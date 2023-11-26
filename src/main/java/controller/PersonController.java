@@ -47,10 +47,7 @@ public class PersonController {
         client.setEmail(email);
         client.setDocTipe(docTipe);
         client.setIdNum(idNum);
-
-        pr.getEm().getTransaction().begin();
         pr.addPerson(client);
-        pr.getEm().getTransaction().commit();
     }
 
     public void showClients(){
@@ -114,9 +111,7 @@ public class PersonController {
                     System.out.println("¿Desea agregar otro servicio? s/n");
                     cont = scanner.nextLine().equalsIgnoreCase("s");
                 } while (cont);
-                pr.getEm().getTransaction().begin();
                 pr.updatePerson(person);
-                pr.getEm().getTransaction().commit();
                 System.out.println("Servicio/s agregado/s correctamente");
             }else{
                 System.out.println("No hay coincidencias para su busqueda");
@@ -162,10 +157,7 @@ public class PersonController {
         technician.setIsAvailable(isAvailable);
         technician.setWhatsapp(whatsapp);
         technician.setFavoriteCom(favoriteCom);
-
-        pr.getEm().getTransaction().begin();
         pr.addPerson(technician);
-        pr.getEm().getTransaction().commit();
     }
 
     public Technician selectTechnicianById(Problem problem, Scanner scanner){

@@ -49,7 +49,7 @@ public class IncidentController {
                     }
                     incident.setResolutionTime(resTime);
                     ir.addIncident(incident);
-                    // TODO: Metodo para dar aviso al tecnico una vez se registra el incidente
+                    // TODO: Agregar metodo para dar aviso al tecnico una vez se registra el incidente
                     System.out.println("Se le aviso al tecnico por " + technician.getFavoriteCom().toString().toLowerCase());
                 }
             }
@@ -80,5 +80,12 @@ public class IncidentController {
         System.out.println("Incidentes no resueltos:");
         List<Incident> incidents = ir.getUnresolvedIncidents();
         incidents.forEach(System.out::println);
+    }
+
+    public void viewResolvedIncidents() {
+        System.out.println("Incidentes resueltos:");
+        List<Incident> incidents = ir.getResolvedIncidents();
+        incidents.forEach(System.out::println);
+
     }
 }

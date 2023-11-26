@@ -40,6 +40,12 @@ public class IncidentRepository {
 
     }
 
+    public List<Incident> getResolvedIncidents() {
+        return em.createQuery("select i from Incident i where i.isResolved=1", Incident.class)
+                .getResultList();
+
+    }
+
     public Incident getUnresolvedIncidentById(Long id) {
         return em.createQuery("select i from Incident i where i.isResolved=0 and i.id= :id", Incident.class)
                 .setParameter("id", id)

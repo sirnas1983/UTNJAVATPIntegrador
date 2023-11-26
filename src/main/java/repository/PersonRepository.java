@@ -31,10 +31,15 @@ public class PersonRepository {
         return em.createQuery("select t from Technician t", Technician.class).getResultList();
     }
     public void addPerson(Person person) {
+        em.getTransaction().begin();
         em.persist(person);
+        em.getTransaction().commit();
     }
     public void updatePerson(Person person) {
+        em.getTransaction().begin();
         em.merge(person);
+        em.getTransaction().commit();
+
     }
 
     public Client getClientById(long id){
