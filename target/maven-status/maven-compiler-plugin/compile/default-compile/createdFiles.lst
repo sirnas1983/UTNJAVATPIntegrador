@@ -1,0 +1,11 @@
+model\Service.class
+model\Client.class
+model\FavoriteCom.class
+model\Software.class
+model\Technician.class
+ServiceManagement.class
+model\OpSys.class
+model\Problem.class
+model\DocTipe.class
+model\Incident.class
+model\Person.class
