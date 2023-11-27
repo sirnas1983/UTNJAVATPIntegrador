@@ -3,7 +3,7 @@
     <persistence-unit name="JPA_PU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3308/java_utn_persistance?zeroDateTimeBehavior=convertToNull&amp;serverTimezone=UTC"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/java_utn_persistance?zeroDateTimeBehavior=convertToNull&amp;serverTimezone=UTC"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
             <property name="hibernate.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
