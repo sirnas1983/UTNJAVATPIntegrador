@@ -62,7 +62,7 @@ public class PersonController {
         System.out.println();
     }
 
-    public void showTechniciansBySpeciality(Service service){
+    public void showTechniciansBySpeciality(Service service) throws NoResultException{
         System.out.println("Tecnicos:");
         pr.getTechniciansBySpeciality(service).forEach(System.out::println);
         System.out.println();
@@ -79,7 +79,9 @@ public class PersonController {
         System.out.println("Ingrese id de persona con la cual desea operar");
         long id = Long.parseLong(scanner.nextLine());
         Person person = pr.getPersonById(id);
-        System.out.println("Has seleccionado " + person);
+        if (person != null){
+            System.out.println("Has seleccionado " + person);
+        }
         return person;
     }
 
@@ -88,7 +90,9 @@ public class PersonController {
         System.out.println("Ingrese id de cliente");
         long id = Long.parseLong(scanner.nextLine());
         Client client = pr.getClientById(id);
-        System.out.println("Has seleccionado " + client);
+        if (client != null) {
+            System.out.println("Has seleccionado " + client);
+        }
         return client;
     }
 
@@ -166,10 +170,10 @@ public class PersonController {
             System.out.println("No hay tecnicos disponibles con esa especialidad");
             return null;
         } else {
-            this.showTechniciansBySpeciality(problem.getService());
-            System.out.println("Ingrese id de tecnico");
-            long id = Long.parseLong(scanner.nextLine());
             try {
+                this.showTechniciansBySpeciality(problem.getService());
+                System.out.println("Ingrese id de tecnico");
+                long id = Long.parseLong(scanner.nextLine());
                 Technician technician = pr.selectTechnicianBySpecialityAndId(problem.getService(), id);
                 System.out.println("Has seleccionado " + technician);
                 return technician;

@@ -7,6 +7,7 @@ import model.Problem;
 import model.Service;
 import repository.ProblemRepository;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class ProblemController {
         this.prR = new ProblemRepository();
     }
 
-    public Problem getProblemById(Scanner scanner, Client client,ServiceController sc){
+    public Problem getProblemById(Scanner scanner, Client client, ServiceController sc) throws NoResultException {
         getProblemsOfClient(client);
         System.out.println("Ingrese numero de ID - 0 para generar un nuevo problema");
 

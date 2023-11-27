@@ -15,4 +15,9 @@ public class Service {
     @Enumerated(EnumType.STRING) private Software software;
     @Enumerated(EnumType.STRING) private OpSys opSys;
 
+    @Override
+    public String toString(){
+        return this.id.toString() + " " + this.software.name() + " para " + this.opSys.name();
+    }
+
 }

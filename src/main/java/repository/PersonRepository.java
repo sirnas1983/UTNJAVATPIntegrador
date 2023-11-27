@@ -1,5 +1,6 @@
 package repository;
 
+import lombok.Getter;
 import model.*;
 
 import javax.persistence.EntityManager;
@@ -8,13 +9,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
+@Getter
 public class PersonRepository {
 
     @PersistenceContext
     private EntityManager em;
-    public EntityManager getEm() {
-        return em;
-    }
+
     public void setEm(EntityManager em){
         this.em = em;
     }
@@ -46,7 +46,7 @@ public class PersonRepository {
         return em.find(Client.class, id);
     }
 
-    public List<Technician> getTechniciansBySpeciality(Service service) {
+    public List<Technician> getTechniciansBySpeciality(Service service) throws NoResultException {
         Query query = em.createQuery("SELECT t FROM Technician t JOIN t.specialities c " +
                 "WHERE c.id = :idService and t.isAvailable=1", Technician.class);
         query.setParameter("idService", service.getId());

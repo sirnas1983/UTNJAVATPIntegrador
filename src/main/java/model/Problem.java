@@ -3,7 +3,6 @@ package model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.Period;
 
 @Data
 @Entity
@@ -20,4 +19,9 @@ public class Problem {
     private Double resolutionTime;
 
     private String description;
+
+    @Override
+    public String toString(){
+        return this.id.toString() + " " + this.description + " - " + this.service + " - Tiempo aprox:" + this.getResolutionTime() + " hs.";
+    }
 }

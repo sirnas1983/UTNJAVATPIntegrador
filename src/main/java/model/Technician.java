@@ -33,6 +33,6 @@ public class Technician extends Person{
 
     @Override
     public String toString(){
-        return this.getId().toString() + "- " + this.getName() + " - Esp: " + this.getSpecialities();
+        return this.getId().toString() + "- " + this.getName() + " - Esp: " + this.getSpecialities()+ " - Disp:" + (this.isAvailable ? "si" : "no");
     }
 }

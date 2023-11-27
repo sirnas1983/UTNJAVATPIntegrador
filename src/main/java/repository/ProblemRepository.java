@@ -6,6 +6,7 @@ import java.util.List;
 import model.*;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -38,7 +39,7 @@ public class ProblemRepository {
     public Problem getProblemById(Long id){
         return em.find(Problem.class, id);
     }
-    public Problem getProblemByServicesById(List<Service> services, long id){
+    public Problem getProblemByServicesById(List<Service> services, long id) throws NoResultException {
         Query query = em.createQuery("select p from Problem p JOIN p.service c " +
                 "Where c in :services and p.id = :id", Problem.class);
         query.setParameter("services", services);

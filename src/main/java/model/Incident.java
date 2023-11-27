@@ -25,4 +25,11 @@ public class Incident {
     private Double resolutionTime;
 
 
+    @Override
+    public String toString(){
+        return  this.id.toString() + " -Cli: " + this.client.getName() + " -Tec: " + this.technician.getName() +
+                " -Descripcion:"+ this.problem.getDescription() + " -Tiempo: " + this.resolutionTime.toString() +
+                " -Resuelto: " + (this.isResolved ? "si" : "no");
+    }
+
 }

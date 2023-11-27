@@ -44,7 +44,7 @@ public class ServiceManagement {
             System.out.println("9. Reportar incidente");
             System.out.println("10. Ver todos los incidentes");
             System.out.println("11. Dar incidente por finalizado");
-            System.out.println("11. Ver incidentes solucionados");
+            System.out.println("12. Ver incidentes solucionados");
             System.out.println("0. Salir");
             System.out.println("-".repeat(30));
             System.out.println("Ingrese una opcion: ");

@@ -5,6 +5,7 @@ import lombok.Setter;
 import model.*;
 import repository.IncidentRepository;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,29 +30,33 @@ public class IncidentController {
                 System.out.println("Cliente no tiene Servicios contratados");
             }
         } else {
-            Problem problem = prC.getProblemById(scanner, client, sc);
-            if(problem == null){
-                System.out.println("No se encontraron problemas con ese ID");
-            } else {
-                Technician technician = pC.selectTechnicianById(problem, scanner);
-                if (technician != null){
-                    Incident incident = new Incident();
-                    incident.setClient(client);
-                    incident.setProblem(problem);
-                    incident.setTechnician(technician);
-                    incident.setIsResolved(false);
-                    Double resTime;
-                    System.out.println("¿Desea modificar el tiempo de resolucion? s/n");
-                    if (scanner.nextLine().equalsIgnoreCase("s")){
-                        resTime = Double.parseDouble(scanner.nextLine());
-                    } else {
-                        resTime = problem.getResolutionTime();
+            try {
+                Problem problem = prC.getProblemById(scanner, client, sc);
+                if (problem == null) {
+                    System.out.println("No se encontraron problemas con ese ID");
+                } else {
+                    Technician technician = pC.selectTechnicianById(problem, scanner);
+                    if (technician != null) {
+                        Incident incident = new Incident();
+                        incident.setClient(client);
+                        incident.setProblem(problem);
+                        incident.setTechnician(technician);
+                        incident.setIsResolved(false);
+                        Double resTime;
+                        System.out.println("¿Desea modificar el tiempo de resolucion? s/n");
+                        if (scanner.nextLine().equalsIgnoreCase("s")) {
+                            resTime = Double.parseDouble(scanner.nextLine());
+                        } else {
+                            resTime = problem.getResolutionTime();
+                        }
+                        incident.setResolutionTime(resTime);
+                        ir.addIncident(incident);
+                        // TODO: Agregar metodo para dar aviso al tecnico una vez se registra el incidente
+                        System.out.println("Se le aviso al tecnico por " + technician.getFavoriteCom().toString().toLowerCase());
                     }
-                    incident.setResolutionTime(resTime);
-                    ir.addIncident(incident);
-                    // TODO: Agregar metodo para dar aviso al tecnico una vez se registra el incidente
-                    System.out.println("Se le aviso al tecnico por " + technician.getFavoriteCom().toString().toLowerCase());
                 }
+            }catch (NoResultException re){
+                System.out.println("No existen problemas con ese ID");
             }
         }
     }
